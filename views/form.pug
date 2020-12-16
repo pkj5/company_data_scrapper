@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  div.card-body.text-center
+    -data = data || {}
+    if errors
+        for error in errors
+            div.text-danger.p-3=error.msg  
+    div.row
+      div.col-sm-6.offset-sm-3
+        form(action="/company-list" method="POST" class="form-inline")
+          label(for="search") Search Company:
+          div.form-group.mx-sm-3.mb-2
+            input(
+              type="text"
+              id="company_name"
+              name="company_name"
+              value=data.company_name
+              class="form-control"
+            )  
+          div.form-group.mx-sm-3.mb-2
+            button(type="submit" class="btn btn-primary mb-2")="Search"

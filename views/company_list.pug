@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  div.card-body.text-center
+    h3.p-3.mb-2="Search results for : "+cname
+    div.row
+      div.col-sm-6.offset-sm-3
+        form(action="/company-list" method="POST" class="form-inline")
+            input(type="hidden" id="company_name" name="company_name" value=cname)  
+            input(type="hidden" id="save" name="save" value="save-to-db") 
+            div.form-group.mx-sm-3.mb-2
+                a(href="." class="btn btn-primary m-2 p-2")="Back to Search"
+                button(type="submit" class="btn btn-primary m-2 p-2")="Add Company"
+                     
+
+        table(class="table table-striped col-md-12 col-sm-12 col-xs-12")
+            thead
+                tr
+                    td="CIN"
+                    td="Company Name"
+            tbody
+                if scrapedData
+                    for sd in scrapedData
+                        tr
+                            td=sd.cin
+                            td=sd.company_name
